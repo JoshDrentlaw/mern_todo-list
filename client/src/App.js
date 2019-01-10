@@ -2,8 +2,8 @@ import React from 'react';
 import { 
     Container
 } from 'reactstrap';
-import ItemList from './ItemList';
-import '../css/index.css';
+import ItemList from './components/ItemList';
+import './css/index.css';
 
 class App extends React.Component {
     render() {

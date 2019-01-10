@@ -4,6 +4,7 @@ import {
     ListGroupItem,
     Button
 } from 'reactstrap';
+import uuid from 'uuid';
 
 class ItemListItem extends React.Component {
     constructor(props) {
@@ -40,12 +41,38 @@ class ItemListItem extends React.Component {
 }
 
 class ItemList extends React.Component {
-render() {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            items: [
+                {
+                    id: uuid(),
+                    value: "Make this app."
+                },
+                {
+                    id: uuid(),
+                    value: "Find a job."
+                },
+                {
+                    id: uuid(),
+                    value: "Seek fulfillment."
+                },
+            ]
+        }
+    }
+
+    render() {
+        const { items } = this.state;
         return (
             <ListGroup>
-                <ItemListItem value="Make this app." />
-                <ItemListItem value="Find a job." />
-                <ItemListItem value="Seek fulfillment." />
+                {
+                    items.map(({ id, value }) => {
+                        <ItemListItem
+                            value={ value }
+                        />
+                    });
+                }
             </ListGroup>
         );
     }
