@@ -31,10 +31,14 @@ class ItemListItem extends React.Component {
                         this.toggle();
                     }}
                 />
-                <span className="todo-item">{
-                        this.state.checked ? <s>{ this.props.value }</s> : this.props.value
-                }</span>
-                <Button className="float-right" color="danger">X</Button>
+                <span className="todo-item">
+                    { this.state.checked ? <s>{ this.props.todo }</s> : this.props.todo }
+                </span>
+                <Button
+                    className="float-right"
+                    color="danger"
+                    //onClick={}
+                >X</Button>
             </ListGroupItem>
         );
     }
@@ -48,15 +52,15 @@ class ItemList extends React.Component {
             items: [
                 {
                     id: uuid(),
-                    value: "Make this app."
+                    todo: "Make this app."
                 },
                 {
                     id: uuid(),
-                    value: "Find a job."
+                    todo: "Find a job."
                 },
                 {
                     id: uuid(),
-                    value: "Seek fulfillment."
+                    todo: "Seek fulfillment."
                 },
             ]
         }
@@ -67,11 +71,13 @@ class ItemList extends React.Component {
         return (
             <ListGroup>
                 {
-                    items.map(({ id, value }) => {
-                        <ItemListItem
-                            value={ value }
-                        />
-                    });
+                    items.map(({ id, todo }) => {
+                        return (
+                            <ItemListItem
+                                todo={ todo }
+                            />
+                        );
+                    })
                 }
             </ListGroup>
         );
