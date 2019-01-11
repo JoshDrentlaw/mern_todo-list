@@ -37,7 +37,7 @@ class ItemListItem extends React.Component {
                 <Button
                     className="float-right"
                     color="danger"
-                    //onClick={}
+                    onClick={ this.props.delete }
                 >X</Button>
             </ListGroupItem>
         );
@@ -74,7 +74,13 @@ class ItemList extends React.Component {
                     items.map(({ id, todo }) => {
                         return (
                             <ItemListItem
+                                key={ id }
                                 todo={ todo }
+                                delete={() => {
+                                    this.setState(state => {
+                                        return this.state.items.filter(item => item.id !== id);
+                                    });
+                                }}
                             />
                         );
                     })
