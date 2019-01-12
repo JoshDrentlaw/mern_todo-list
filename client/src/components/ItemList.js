@@ -77,9 +77,9 @@ class ItemList extends React.Component {
                                 key={ id }
                                 todo={ todo }
                                 delete={() => {
-                                    this.setState(state => {
-                                        return this.state.items.filter(item => item.id !== id);
-                                    });
+                                    this.setState(state => ({
+                                        items: state.items.filter(item => item.id !== id)
+                                    }));
                                 }}
                             />
                         );
