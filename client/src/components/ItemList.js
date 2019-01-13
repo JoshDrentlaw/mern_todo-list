@@ -5,6 +5,7 @@ import {
     Button
 } from 'reactstrap';
 import uuid from 'uuid';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class ItemListItem extends React.Component {
     constructor(props) {
@@ -37,8 +38,9 @@ class ItemListItem extends React.Component {
                 <Button
                     className="float-right"
                     color="danger"
+                    size="sm"
                     onClick={ this.props.delete }
-                >X</Button>
+                >&times;</Button>
             </ListGroupItem>
         );
     }
@@ -70,11 +72,10 @@ class ItemList extends React.Component {
         const { items } = this.state;
         return (
             <ListGroup>
-                {
-                    items.map(({ id, todo }) => {
-                        return (
+                <TransitionGroup className="todo-list">
+                    {items.map(({ id, todo }) => (
+                        <CSSTransition key={ id } timeout={ 500 } classNames="fade">
                             <ItemListItem
-                                key={ id }
                                 todo={ todo }
                                 delete={() => {
                                     this.setState(state => ({
@@ -82,9 +83,9 @@ class ItemList extends React.Component {
                                     }));
                                 }}
                             />
-                        );
-                    })
-                }
+                        </CSSTransition>
+                    ))}
+                </TransitionGroup>
             </ListGroup>
         );
     }
