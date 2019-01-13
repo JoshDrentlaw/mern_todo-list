@@ -4,7 +4,6 @@ import {
     ListGroupItem,
     Button
 } from 'reactstrap';
-import uuid from 'uuid';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class ItemListItem extends React.Component {
@@ -47,29 +46,9 @@ class ItemListItem extends React.Component {
 }
 
 class ItemList extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            items: [
-                {
-                    id: uuid(),
-                    todo: "Make this app."
-                },
-                {
-                    id: uuid(),
-                    todo: "Find a job."
-                },
-                {
-                    id: uuid(),
-                    todo: "Seek fulfillment."
-                },
-            ]
-        }
-    }
 
     render() {
-        const { items } = this.state;
+        const { items } = this.props.state;
         return (
             <ListGroup>
                 <TransitionGroup className="todo-list">
