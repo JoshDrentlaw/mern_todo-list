@@ -4,8 +4,9 @@ import {
 } from 'reactstrap';
 import AddTodo from './components/AddTodo';
 import ItemList from './components/ItemList';
-import uuid from 'uuid';
 import './css/index.css';
+
+import uuid from 'uuid';
 
 class App extends React.Component {
     constructor(props) {
@@ -33,9 +34,15 @@ class App extends React.Component {
         let todo = document.getElementById('new-todo').value;
         if (todo) {
             this.setState(state => ({
-                items: [...state.items, { id: uuid(), todo}]
+                items: [...state.items, { id: '', todo}]
             }));
         }
+    }
+
+    delete = (id) => {
+        this.setState(state => ({
+            items: state.items.filter(item => item.id !== id)
+        }));
     }
 
     render() {
@@ -43,7 +50,7 @@ class App extends React.Component {
             <Container id="main-container">
                 <h1 id="header">Todo List</h1>
                 <AddTodo add={ this.add } />
-                <ItemList state={ this.state } />
+                <ItemList state={ this.state } delete={ this.delete } />
             </Container>
         );
     }
