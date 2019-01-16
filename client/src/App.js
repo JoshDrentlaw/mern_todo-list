@@ -6,28 +6,19 @@ import AddTodo from './components/AddTodo';
 import ItemList from './components/ItemList';
 import './css/index.css';
 
-import uuid from 'uuid';
-
 class App extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            items: [
-                {
-                    id: uuid(),
-                    todo: "Make this app."
-                },
-                {
-                    id: uuid(),
-                    todo: "Find a job."
-                },
-                {
-                    id: uuid(),
-                    todo: "Seek fulfillment."
-                },
-            ]
+            items: []
         }
+    }
+
+    componentWillMount() {
+        fetch('/api/todos')
+            .then(res => console.log(res.json()));
+            //.then(data => console.log(data));
     }
 
     add = () => {
