@@ -49,13 +49,14 @@ class ItemList extends React.Component {
 
     render() {
         const { items } = this.props.state;
+        console.log(items);
         return (
             <ListGroup>
                 <TransitionGroup className="todo-list">
-                    {items.map(({ id, todo }) => (
-                        <CSSTransition key={ id } timeout={ 500 } classNames="fade">
+                    {items.map(({ _id, todo }) => (
+                        <CSSTransition key={ _id } timeout={ 500 } classNames="fade">
                             <ItemListItem
-                                id={ id }
+                                id={ _id }
                                 todo={ todo }
                                 delete={ this.props.delete }
                             />
