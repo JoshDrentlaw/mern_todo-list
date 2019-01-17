@@ -17,15 +17,15 @@ class App extends React.Component {
 
     componentWillMount() {
         fetch('/api/todos')
-            .then(res => console.log(res.json()));
-            //.then(data => console.log(data));
+            .then(res => res.json())
+            .then(data => this.setState({items: data}));
     }
 
     add = () => {
         let todo = document.getElementById('new-todo').value;
         if (todo) {
             this.setState(state => ({
-                items: [...state.items, { id: '', todo}]
+                items: [...state.items, { todo }]
             }));
         }
     }
