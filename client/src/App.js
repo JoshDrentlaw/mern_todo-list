@@ -27,6 +27,11 @@ class App extends React.Component {
             this.setState(state => ({
                 items: [...state.items, { todo }]
             }));
+            fetch('/api/todos', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({"todo": todo})
+            });
         }
     }
 

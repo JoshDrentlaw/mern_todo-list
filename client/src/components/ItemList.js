@@ -38,7 +38,7 @@ class ItemListItem extends React.Component {
                     className="float-right"
                     color="danger"
                     size="sm"
-                    onClick={() => this.props.delete(this.props.id)}
+                    onClick={() => this.props.delete(this.props._id)}
                 >&times;</Button>
             </ListGroupItem>
         );
@@ -49,14 +49,13 @@ class ItemList extends React.Component {
 
     render() {
         const { items } = this.props.state;
-        console.log(items);
         return (
             <ListGroup>
                 <TransitionGroup className="todo-list">
-                    {items.map(({ _id, todo }) => (
-                        <CSSTransition key={ _id } timeout={ 500 } classNames="fade">
+                    {items.map(({ id, todo }) => (
+                        <CSSTransition key={ id } timeout={ 500 } classNames="fade">
                             <ItemListItem
-                                id={ _id }
+                                _id={ id }
                                 todo={ todo }
                                 delete={ this.props.delete }
                             />
