@@ -37,7 +37,7 @@ class App extends React.Component {
 
     delete = (id) => {
         this.setState(state => ({
-            items: state.items.filter(item => item.id !== id)
+            items: state.items.filter(item => item._id !== id)
         }));
     }
 
