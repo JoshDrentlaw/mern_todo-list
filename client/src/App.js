@@ -3,7 +3,7 @@ import {
     Container
 } from 'reactstrap';
 import AddTodo from './components/AddTodo';
-import ItemList from './components/ItemList';
+import TodoList from './components/TodoList';
 import './css/index.css';
 
 class App extends React.Component {
@@ -24,14 +24,17 @@ class App extends React.Component {
     add = () => {
         let todo = document.getElementById('new-todo').value;
         if (todo) {
-            this.setState(state => ({
-                items: [...state.items, { todo }]
-            }));
             fetch('/api/todos', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({"todo": todo})
-            });
+            })
+                .then(res => res.json())
+                .then(todo => {
+                    this.setState(state => ({
+                        items: [...state.items, todo]
+                    }));
+                });
         }
     }
 
@@ -39,6 +42,12 @@ class App extends React.Component {
         this.setState(state => ({
             items: state.items.filter(item => item._id !== id)
         }));
+        const url = `/api/todos/${id}`;
+        fetch(url, {
+            method: "POST",
+            headers: "application/json",
+            body: JSON.stringify(this.state.items)
+        });
     }
 
     render() {
@@ -46,7 +55,7 @@ class App extends React.Component {
             <Container id="main-container">
                 <h1 id="header">Todo List</h1>
                 <AddTodo add={ this.add } />
-                <ItemList state={ this.state } delete={ this.delete } />
+                <TodoList state={ this.state } delete={ this.delete } />
             </Container>
         );
     }

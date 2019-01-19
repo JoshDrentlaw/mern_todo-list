@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-class ItemListItem extends React.Component {
+class TodoCtn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,7 +45,7 @@ class ItemListItem extends React.Component {
     }
 }
 
-class ItemList extends React.Component {
+class TodoList extends React.Component {
 
     render() {
         const { items } = this.props.state;
@@ -54,7 +54,7 @@ class ItemList extends React.Component {
                 <TransitionGroup className="todo-list">
                     {items.map(({ _id, todo }) => (
                         <CSSTransition key={ _id } timeout={ 500 } classNames="fade">
-                            <ItemListItem
+                            <TodoCtn
                                 id={ _id }
                                 todo={ todo }
                                 delete={ this.props.delete }
@@ -67,4 +67,4 @@ class ItemList extends React.Component {
     }
 }
 
-export default ItemList;
+export default TodoList;
