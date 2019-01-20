@@ -2,6 +2,7 @@ import React from 'react';
 import { 
     Container
 } from 'reactstrap';
+import NavBar from './components/NavBar';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import './css/index.css';
@@ -53,11 +54,15 @@ class App extends React.Component {
 
     render() {
         return (
-            <Container id="main-container">
-                <h1 id="header">Todo List</h1>
-                <AddTodo add={ this.add } />
-                <TodoList state={ this.state } delete={ this.delete } />
-            </Container>
+            <main>
+                <NavBar user="Josh" />
+                <Container id="main-container">
+                    <h1 id="header">Todo List</h1>
+                    <AddTodo add={ this.add } />
+                    <TodoList state={ this.state } delete={ this.delete } />
+                </Container>
+            </main>
+            
         );
     }
 }
