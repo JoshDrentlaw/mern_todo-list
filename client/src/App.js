@@ -39,15 +39,16 @@ class App extends React.Component {
     }
 
     delete = (id) => {
-        this.setState(state => ({
-            items: state.items.filter(item => item._id !== id)
-        }));
         const url = `/api/todos/${id}`;
         fetch(url, {
             method: "POST",
-            headers: "application/json",
-            body: JSON.stringify(this.state.items)
-        });
+            headers: { "Content-Type": "application/json" }
+        })
+            .then(() => {
+                this.setState(state => ({
+                    items: state.items.filter(item => item._id !== id)
+                }));
+            });
     }
 
     render() {
