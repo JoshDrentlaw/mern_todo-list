@@ -24,7 +24,7 @@ router.post('/', (req, res, next) => {
                     return next(err);
                 }
                 else {
-                    return res.redirect('/profile');
+                    return res.redirect('/');
                 }
             });
         }
